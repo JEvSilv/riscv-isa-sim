@@ -1,5 +1,11 @@
-RISC-V ISA Simulator | RV-Across: An Associative Processing Simulator
-=====================================================================
+RV-Across: An Associative Processing Simulator
+==============================================
+About
+-------------
+A simulator based on RISC-V (Spike) that provides interface to associative or near-data processing.
+
+RISC-V ISA Simulator
+==============================================
 About
 -------------
 
