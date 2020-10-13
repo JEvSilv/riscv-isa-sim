@@ -191,7 +191,7 @@ public:
   const disassembler_t* get_disassembler() { return disassembler; }
 
   void register_insn(insn_desc_t);
-  void register_extension(extension_t*);
+  void register_extension(extension_t*, bool = false);
 
   // MMIO slave interface
   bool load(reg_t addr, size_t len, uint8_t* bytes);
@@ -284,8 +284,34 @@ public:
     return -1;
   }
 
-  void trigger_updated();
+  uint8_t get_state_prv() {
+    return this->state.prv;
+  }
 
+  void count_prv_mode(uint8_t prv) {
+      switch(prv) {
+          case PRV_U:
+              this->insn_prv_u_count++;
+              break;
+          case PRV_S:
+              this->insn_prv_s_count++;
+              break;
+          case PRV_M:
+              this->insn_prv_m_count++;
+              break;
+          case PRV_H:
+              this->insn_prv_h_count++;
+              break;
+      }
+  }
+
+  void trigger_updated();
+  uint64_t insn_count;
+  uint64_t insn_prv_m_count;
+  uint64_t insn_prv_s_count;
+  uint64_t insn_prv_u_count;
+  uint64_t insn_prv_h_count;
+  bool stats;
 private:
   sim_t* sim;
   mmu_t* mmu; // main memory is always accessed via the mmu
@@ -327,6 +353,7 @@ private:
 
   // Track repeated executions for processor_t::disasm()
   uint64_t last_pc, last_bits, executions;
+
 };
 
 reg_t illegal_instruction(processor_t* p, insn_t insn, reg_t pc);

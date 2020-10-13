@@ -137,19 +137,22 @@ int main()
         else if (lower > 'm' && lower <= 'z')
             text[i] -= 13;
         i++;
+    
     }
 
     while (!wait)
         ;
+
 }
 $ cat spike.lds 
-OUTPUT_ARCH( "riscv" )
+OUTPUT_ARCH( "riscv"  )
 
 SECTIONS
 {
   . = 0x10010000;
-  .text : { *(.text) }
-  .data : { *(.data) }
+  .text : { *(.text)  }
+  .data : { *(.data)  }
+
 }
 $ riscv64-unknown-elf-gcc -g -Og -o rot13-64.o -c rot13.c
 $ riscv64-unknown-elf-gcc -g -Og -T spike.lds -nostartfiles -o rot13-64 rot13-64.o
@@ -223,4 +226,11 @@ Breakpoint 1, main () at rot13.c:23
 $4 = 0
 (gdb) print text
 ...
+``````
+```
+```
+```
+```
+```
+```
 ```

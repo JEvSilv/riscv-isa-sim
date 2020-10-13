@@ -43,6 +43,10 @@ class memtracer_list_t : public memtracer_t
   {
     list.push_back(h);
   }
+  
+  // RV-Across
+  std::vector<memtracer_t*> get_list(){ return list; };
+
  private:
   std::vector<memtracer_t*> list;
 };

@@ -32,6 +32,12 @@ class cache_sim_t
 
   static cache_sim_t* construct(const char* config, const char* name);
 
+  //RV-Across
+  uint64_t get_read_accesses(){return read_accesses; };
+  uint64_t get_read_misses(){ return read_misses; };
+  uint64_t get_write_access(){ return write_accesses; };
+  uint64_t get_write_misses(){ return write_misses; };
+
  protected:
   static const uint64_t VALID = 1ULL << 63;
   static const uint64_t DIRTY = 1ULL << 62;
@@ -88,6 +94,9 @@ class cache_memtracer_t : public memtracer_t
   {
     cache->set_miss_handler(mh);
   }
+  
+  // RV-Across
+  cache_sim_t* get_cache(){ return cache; };
 
  protected:
   cache_sim_t* cache;

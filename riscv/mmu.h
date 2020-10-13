@@ -80,7 +80,23 @@ public:
 
   // template for functions that load an aligned value from memory
   #define load_func(type) \
-    inline type##_t load_##type(reg_t addr) { \
+    inline type##_t load_##type(reg_t addr, bool in_place=false) { \
+      reg_t paddr = translate(addr, LOAD); \
+      if (auto host_addr = sim->addr_to_mem(paddr)) { \
+        if(proc != NULL) { \
+          if(!in_place){ \
+            this->load_count++; \
+            this->count_prv_load(addr); \
+          } else { \
+            pim_access_load++; \
+            type##_t res; \
+            load_slow_path(addr, sizeof(type##_t), (uint8_t*)&res, true); \
+            return res; \
+          } \
+        } \
+      } \
+      if (addr == 0x8000a000) { this->fromhost_load_count++; }  \
+      if (addr == 0x8000a008) { this->tohost_load_count++; }  \
       if (unlikely(addr & (sizeof(type##_t)-1))) \
         return misaligned_load(addr, sizeof(type##_t)); \
       reg_t vpn = addr >> PGSHIFT; \
@@ -114,7 +130,22 @@ public:
 
   // template for functions that store an aligned value to memory
   #define store_func(type) \
-    void store_##type(reg_t addr, type##_t val) { \
+    void store_##type(reg_t addr, type##_t val, bool in_place=false) { \
+      reg_t paddr = translate(addr, STORE); \
+      if (auto host_addr = sim->addr_to_mem(paddr)) { \
+        if(proc != NULL) { \
+          if(!in_place){ \
+            this->store_count++; \
+            this->count_prv_store(addr);\
+          } else { \
+            pim_access_store++; \
+            store_slow_path(addr, sizeof(type##_t), (const uint8_t*)&val, true); \
+            return; \
+          } \
+        } \
+      } \
+      if (addr == 0x8000a000) { this->fromhost_store_count++; }  \
+      if (addr == 0x8000a008) { this->tohost_store_count++; }  \
       if (unlikely(addr & (sizeof(type##_t)-1))) \
         return misaligned_store(addr, val, sizeof(type##_t)); \
       reg_t vpn = addr >> PGSHIFT; \
@@ -238,6 +269,61 @@ public:
 
   void register_memtracer(memtracer_t*);
 
+  uint64_t total_pim_access(){ return this->pim_access_load + this->pim_access_store; };
+  uint64_t total_memory_access(){ return this->store_count + this->load_count; };
+  uint64_t total_u_ma(){ return this->prv_load_u + this->prv_store_u; };
+
+
+  void count_prv_load(reg_t addr) {
+      switch(this->proc->get_state_prv()) {
+          case PRV_U:
+              //printf("LOAD USER - addr: %u\n", addr);
+              this->prv_load_u++;
+              break;
+          case PRV_S:
+              this->prv_load_s++;
+              break;
+          case PRV_M:
+              this->prv_load_m++;
+              break;
+      }
+  }
+
+  void count_prv_store(reg_t addr) {
+      switch(this->proc->get_state_prv()) {
+          case PRV_U:
+              //printf("STORE USER - addr: %u\n", addr);
+              this->prv_store_u++;
+              break;
+          case PRV_S:
+              this->prv_store_s++;
+              break;
+          case PRV_M:
+              this->prv_store_m++;
+              break;
+      }
+  }
+
+  uint64_t store_count;
+  uint64_t load_count;
+  uint64_t load_slow_path_count;
+  uint64_t store_slow_path_count;
+  uint64_t mmio_load_count;
+  uint64_t mmio_store_count;
+  uint64_t load_page_fault;
+  uint64_t store_page_fault;
+  uint64_t fromhost_load_count;
+  uint64_t tohost_load_count;
+  uint64_t fromhost_store_count;
+  uint64_t tohost_store_count;
+  uint64_t prv_load_u;
+  uint64_t prv_store_u;
+  uint64_t prv_load_s;
+  uint64_t prv_store_s;
+  uint64_t prv_load_m;
+  uint64_t prv_store_m;
+  uint64_t pim_access_load;
+  uint64_t pim_access_store;
 private:
   sim_t* sim;
   processor_t* proc;
@@ -266,8 +352,8 @@ private:
 
   // handle uncommon cases: TLB misses, page faults, MMIO
   tlb_entry_t fetch_slow_path(reg_t addr);
-  void load_slow_path(reg_t addr, reg_t len, uint8_t* bytes);
-  void store_slow_path(reg_t addr, reg_t len, const uint8_t* bytes);
+  void load_slow_path(reg_t addr, reg_t len, uint8_t* bytes, bool = false);
+  void store_slow_path(reg_t addr, reg_t len, const uint8_t* bytes, bool = false);
   reg_t translate(reg_t addr, access_type type);
 
   // ITLB lookup

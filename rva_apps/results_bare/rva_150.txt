@@ -1,0 +1,30 @@
+	 # RV Across #
+	 # RV Across #
+	#  Processor 0  #
+Instruction count: 565000
+User Instruction count: 0
+Hypervisor Instruction count: 0
+Supervisor Instruction count: 0
+Machine Instruction count: 565000
+Slowpath Load count: 16875006
+Slowpath Store count: 10125003
+MMIO Load count: 1
+MMIO Store count: 0
+Load count: 22500
+Store count: 78
+FromHost Load count: 0
+FromHost Store count: 0
+ToHost Load count: 0
+ToHost Store count: 0
+User Load count: 0
+User Store count: 0
+User MA count: 0
+Supervisor Load count: 0
+Supervisor Store count: 0
+Machine Load count: 22500
+Machine Store count: 78
+Total memory access: 22578
+Op Cycles: 2678177
+PIM Write Count: 67500
+PIM Load Count: 112500
+Total PIM Cycles:2678177

@@ -1,0 +1,98 @@
+
+matmul(cid, nc, 150, input1_data, input2_data, results_data); barrier(nc): 4654464 cycles, 1.3 cycles/iter, 1.0 CPI
+	#  Processor 0  #
+Instruction count: 4775000
+User Instruction count: 0
+Hypervisor Instruction count: 0
+Supervisor Instruction count: 0
+Machine Instruction count: 4775000
+Slowpath Load count: 71
+Slowpath Store count: 10
+MMIO Load count: 1
+MMIO Store count: 0
+Load count: 1710463
+Store count: 5987
+FromHost Load count: 1
+FromHost Store count: 0
+ToHost Load count: 1
+ToHost Store count: 0
+User Load count: 0
+User Store count: 0
+User MA count: 0
+Supervisor Load count: 0
+Supervisor Store count: 0
+Machine Load count: 1710463
+Machine Store count: 5987
+Total memory access: 1716450
+	#  Processor 1  #
+Instruction count: 4775000
+User Instruction count: 0
+Hypervisor Instruction count: 0
+Supervisor Instruction count: 0
+Machine Instruction count: 4775000
+Slowpath Load count: 76
+Slowpath Store count: 9
+MMIO Load count: 1
+MMIO Store count: 0
+Load count: 1709720
+Store count: 5701
+FromHost Load count: 1
+FromHost Store count: 0
+ToHost Load count: 1
+ToHost Store count: 0
+User Load count: 0
+User Store count: 0
+User MA count: 0
+Supervisor Load count: 0
+Supervisor Store count: 0
+Machine Load count: 1709720
+Machine Store count: 5701
+Total memory access: 1715421
+	#  Processor 2  #
+Instruction count: 4775000
+User Instruction count: 0
+Hypervisor Instruction count: 0
+Supervisor Instruction count: 0
+Machine Instruction count: 4775000
+Slowpath Load count: 76
+Slowpath Store count: 9
+MMIO Load count: 1
+MMIO Store count: 0
+Load count: 1709720
+Store count: 5701
+FromHost Load count: 1
+FromHost Store count: 0
+ToHost Load count: 1
+ToHost Store count: 0
+User Load count: 0
+User Store count: 0
+User MA count: 0
+Supervisor Load count: 0
+Supervisor Store count: 0
+Machine Load count: 1709720
+Machine Store count: 5701
+Total memory access: 1715421
+	#  Processor 3  #
+Instruction count: 4775000
+User Instruction count: 0
+Hypervisor Instruction count: 0
+Supervisor Instruction count: 0
+Machine Instruction count: 4775000
+Slowpath Load count: 76
+Slowpath Store count: 12
+MMIO Load count: 1
+MMIO Store count: 0
+Load count: 1709412
+Store count: 5705
+FromHost Load count: 1
+FromHost Store count: 0
+ToHost Load count: 1
+ToHost Store count: 0
+User Load count: 0
+User Store count: 0
+User MA count: 0
+Supervisor Load count: 0
+Supervisor Store count: 0
+Machine Load count: 1709412
+Machine Store count: 5705
+Total memory access: 1715117

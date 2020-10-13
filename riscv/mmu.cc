@@ -10,7 +10,27 @@ mmu_t::mmu_t(sim_t* sim, processor_t* proc)
   check_triggers_load(false),
   check_triggers_store(false),
   matched_trigger(NULL)
-{
+{ 
+  this->tohost_load_count = 0;
+  this->fromhost_load_count = 0;
+  this->tohost_store_count = 0;
+  this->fromhost_store_count = 0;
+  this->store_count = 0;
+  this->load_count = 0;
+  this->load_slow_path_count = 0;
+  this->store_slow_path_count = 0;
+  this->mmio_load_count = 0;
+  this->mmio_store_count = 0;
+  this->load_page_fault = 0;
+  this->store_page_fault = 0;
+  this->prv_load_u = 0;
+  this->prv_store_u = 0;
+  this->prv_load_s = 0;
+  this->prv_store_s = 0;
+  this->prv_load_m = 0;
+  this->prv_store_m = 0;
+  this->pim_access_load = 0;
+  this->pim_access_store = 0;
   flush_tlb();
 }
 
@@ -87,18 +107,32 @@ reg_t reg_from_bytes(size_t len, const uint8_t* bytes)
   abort();
 }
 
-void mmu_t::load_slow_path(reg_t addr, reg_t len, uint8_t* bytes)
+void mmu_t::load_slow_path(reg_t addr, reg_t len, uint8_t* bytes, bool in_place)
 {
   reg_t paddr = translate(addr, LOAD);
+    if (auto host_addr = sim->addr_to_mem(paddr)) {
+    if(proc != NULL) {
+        this->load_slow_path_count++;
+    }
 
-  if (auto host_addr = sim->addr_to_mem(paddr)) {
     memcpy(bytes, host_addr, len);
-    if (tracer.interested_in_range(paddr, paddr + PGSIZE, LOAD))
-      tracer.trace(paddr, len, LOAD);
-    else
-      refill_tlb(addr, paddr, host_addr, LOAD);
+    if(proc != NULL) {
+    if(!in_place && proc->get_state_prv() == PRV_U) {
+        if (tracer.interested_in_range(paddr, paddr + PGSIZE, LOAD))
+            tracer.trace(paddr, len, LOAD);
+        else
+            refill_tlb(addr, paddr, host_addr, LOAD);
+    }else{
+        if(!tracer.interested_in_range(paddr, paddr + PGSIZE, LOAD)) {
+            refill_tlb(addr, paddr, host_addr, LOAD);
+        }
+    }
+    }   
   } else if (!sim->mmio_load(paddr, len, bytes)) {
+    this->load_page_fault++;
     throw trap_load_access_fault(addr);
+  }else{
+      this->mmio_load_count++;
   }
 
   if (!matched_trigger) {
@@ -109,9 +143,10 @@ void mmu_t::load_slow_path(reg_t addr, reg_t len, uint8_t* bytes)
   }
 }
 
-void mmu_t::store_slow_path(reg_t addr, reg_t len, const uint8_t* bytes)
+void mmu_t::store_slow_path(reg_t addr, reg_t len, const uint8_t* bytes, bool in_place)
 {
   reg_t paddr = translate(addr, STORE);
+
 
   if (!matched_trigger) {
     reg_t data = reg_from_bytes(len, bytes);
@@ -121,13 +156,30 @@ void mmu_t::store_slow_path(reg_t addr, reg_t len, const uint8_t* bytes)
   }
 
   if (auto host_addr = sim->addr_to_mem(paddr)) {
+    if(proc != NULL) {
+        this->store_slow_path_count++;
+    }
+
     memcpy(host_addr, bytes, len);
-    if (tracer.interested_in_range(paddr, paddr + PGSIZE, STORE))
-      tracer.trace(paddr, len, STORE);
-    else
-      refill_tlb(addr, paddr, host_addr, STORE);
+    if(proc != NULL) {
+    if(!in_place && proc->get_state_prv() == PRV_U) {
+        if (tracer.interested_in_range(paddr, paddr + PGSIZE, STORE))
+            tracer.trace(paddr, len, STORE);
+        else
+            refill_tlb(addr, paddr, host_addr, STORE);
+    } else {
+        if (!tracer.interested_in_range(paddr, paddr + PGSIZE, STORE)) {
+         refill_tlb(addr, paddr, host_addr, STORE);
+
+        }
+
+    }
+    }
   } else if (!sim->mmio_store(paddr, len, bytes)) {
+    this->store_page_fault++;
     throw trap_store_access_fault(addr);
+  } else {
+    this->mmio_store_count++;
   }
 }
 

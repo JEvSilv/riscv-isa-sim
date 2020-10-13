@@ -1,0 +1,26 @@
+
+matmul(cid, nc, 200, input1_data, input2_data, results_data); barrier(nc): 43601857 cycles, 5.4 cycles/iter, 1.0 CPI
+	#  Processor 0  #
+Instruction count: 43840000
+User Instruction count: 0
+Hypervisor Instruction count: 0
+Supervisor Instruction count: 0
+Machine Instruction count: 43840000
+Slowpath Load count: 159
+Slowpath Store count: 44
+MMIO Load count: 1
+MMIO Store count: 0
+Load count: 16085004
+Store count: 40444
+FromHost Load count: 1
+FromHost Store count: 0
+ToHost Load count: 1
+ToHost Store count: 0
+User Load count: 0
+User Store count: 0
+User MA count: 0
+Supervisor Load count: 0
+Supervisor Store count: 0
+Machine Load count: 16085004
+Machine Store count: 40444
+Total memory access: 16125448

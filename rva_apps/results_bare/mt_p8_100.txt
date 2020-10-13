@@ -1,0 +1,242 @@
+	 # RV Across #
+	 # RV Across #
+	 # RV Across #
+	 # RV Across #
+	 # RV Across #
+	 # RV Across #
+	 # RV Across #
+	 # RV Across #
+
+matmul(cid, nc, 100, input1_data, input2_data, results_data); barrier(nc): 679464 cycles, 0.6 cycles/iter, 1.0 CPI
+	 # RV Across #
+	 # RV Across #
+	 # RV Across #
+	 # RV Across #
+	 # RV Across #
+	 # RV Across #
+	 # RV Across #
+	 # RV Across #
+	#  Processor 0  #
+Instruction count: 735000
+User Instruction count: 0
+Hypervisor Instruction count: 0
+Supervisor Instruction count: 0
+Machine Instruction count: 735000
+Slowpath Load count: 30
+Slowpath Store count: 5
+MMIO Load count: 1
+MMIO Store count: 0
+Load count: 261617
+Store count: 1634
+FromHost Load count: 0
+FromHost Store count: 0
+ToHost Load count: 0
+ToHost Store count: 0
+User Load count: 0
+User Store count: 0
+User MA count: 0
+Supervisor Load count: 0
+Supervisor Store count: 0
+Machine Load count: 261617
+Machine Store count: 1634
+Total memory access: 263251
+Op Cycles: 0
+PIM Write Count: 0
+PIM Load Count: 0
+Total PIM Cycles:0
+	#  Processor 1  #
+Instruction count: 735000
+User Instruction count: 0
+Hypervisor Instruction count: 0
+Supervisor Instruction count: 0
+Machine Instruction count: 735000
+Slowpath Load count: 35
+Slowpath Store count: 6
+MMIO Load count: 1
+MMIO Store count: 0
+Load count: 260067
+Store count: 1353
+FromHost Load count: 1
+FromHost Store count: 0
+ToHost Load count: 1
+ToHost Store count: 0
+User Load count: 0
+User Store count: 0
+User MA count: 0
+Supervisor Load count: 0
+Supervisor Store count: 0
+Machine Load count: 260067
+Machine Store count: 1353
+Total memory access: 261420
+Op Cycles: 0
+PIM Write Count: 80
+PIM Load Count: 48
+Total PIM Cycles:0
+	#  Processor 2  #
+Instruction count: 730000
+User Instruction count: 0
+Hypervisor Instruction count: 0
+Supervisor Instruction count: 0
+Machine Instruction count: 730000
+Slowpath Load count: 34
+Slowpath Store count: 5
+MMIO Load count: 1
+MMIO Store count: 0
+Load count: 259041
+Store count: 1351
+FromHost Load count: 1
+FromHost Store count: 0
+ToHost Load count: 1
+ToHost Store count: 0
+User Load count: 0
+User Store count: 0
+User MA count: 0
+Supervisor Load count: 0
+Supervisor Store count: 0
+Machine Load count: 259041
+Machine Store count: 1351
+Total memory access: 260392
+Op Cycles: 0
+PIM Write Count: 80
+PIM Load Count: 48
+Total PIM Cycles:0
+	#  Processor 3  #
+Instruction count: 730000
+User Instruction count: 0
+Hypervisor Instruction count: 0
+Supervisor Instruction count: 0
+Machine Instruction count: 730000
+Slowpath Load count: 35
+Slowpath Store count: 5
+MMIO Load count: 1
+MMIO Store count: 0
+Load count: 259041
+Store count: 1351
+FromHost Load count: 1
+FromHost Store count: 0
+ToHost Load count: 1
+ToHost Store count: 0
+User Load count: 0
+User Store count: 0
+User MA count: 0
+Supervisor Load count: 0
+Supervisor Store count: 0
+Machine Load count: 259041
+Machine Store count: 1351
+Total memory access: 260392
+Op Cycles: 0
+PIM Write Count: 80
+PIM Load Count: 48
+Total PIM Cycles:0
+	#  Processor 4  #
+Instruction count: 730000
+User Instruction count: 0
+Hypervisor Instruction count: 0
+Supervisor Instruction count: 0
+Machine Instruction count: 730000
+Slowpath Load count: 34
+Slowpath Store count: 5
+MMIO Load count: 1
+MMIO Store count: 0
+Load count: 259041
+Store count: 1351
+FromHost Load count: 1
+FromHost Store count: 0
+ToHost Load count: 1
+ToHost Store count: 0
+User Load count: 0
+User Store count: 0
+User MA count: 0
+Supervisor Load count: 0
+Supervisor Store count: 0
+Machine Load count: 259041
+Machine Store count: 1351
+Total memory access: 260392
+Op Cycles: 0
+PIM Write Count: 80
+PIM Load Count: 48
+Total PIM Cycles:0
+	#  Processor 5  #
+Instruction count: 730000
+User Instruction count: 0
+Hypervisor Instruction count: 0
+Supervisor Instruction count: 0
+Machine Instruction count: 730000
+Slowpath Load count: 34
+Slowpath Store count: 6
+MMIO Load count: 1
+MMIO Store count: 0
+Load count: 259041
+Store count: 1351
+FromHost Load count: 1
+FromHost Store count: 0
+ToHost Load count: 1
+ToHost Store count: 0
+User Load count: 0
+User Store count: 0
+User MA count: 0
+Supervisor Load count: 0
+Supervisor Store count: 0
+Machine Load count: 259041
+Machine Store count: 1351
+Total memory access: 260392
+Op Cycles: 0
+PIM Write Count: 80
+PIM Load Count: 48
+Total PIM Cycles:0
+	#  Processor 6  #
+Instruction count: 730000
+User Instruction count: 0
+Hypervisor Instruction count: 0
+Supervisor Instruction count: 0
+Machine Instruction count: 730000
+Slowpath Load count: 34
+Slowpath Store count: 7
+MMIO Load count: 1
+MMIO Store count: 0
+Load count: 259041
+Store count: 1351
+FromHost Load count: 1
+FromHost Store count: 0
+ToHost Load count: 1
+ToHost Store count: 0
+User Load count: 0
+User Store count: 0
+User MA count: 0
+Supervisor Load count: 0
+Supervisor Store count: 0
+Machine Load count: 259041
+Machine Store count: 1351
+Total memory access: 260392
+Op Cycles: 0
+PIM Write Count: 80
+PIM Load Count: 48
+Total PIM Cycles:0
+	#  Processor 7  #
+Instruction count: 730000
+User Instruction count: 0
+Hypervisor Instruction count: 0
+Supervisor Instruction count: 0
+Machine Instruction count: 730000
+Slowpath Load count: 35
+Slowpath Store count: 5
+MMIO Load count: 1
+MMIO Store count: 0
+Load count: 258808
+Store count: 1353
+FromHost Load count: 1
+FromHost Store count: 0
+ToHost Load count: 1
+ToHost Store count: 0
+User Load count: 0
+User Store count: 0
+User MA count: 0
+Supervisor Load count: 0
+Supervisor Store count: 0
+Machine Load count: 258808
+Machine Store count: 1353
+Total memory access: 260161
+Op Cycles: 0
+PIM Write Count: 80
+PIM Load Count: 48
+Total PIM Cycles:0

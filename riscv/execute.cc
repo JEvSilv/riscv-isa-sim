@@ -133,8 +133,10 @@ void processor_t::step(size_t n)
           }
 
           insn_fetch_t fetch = mmu->load_insn(pc);
+
           if (debug && !state.serialized)
             disasm(fetch.insn);
+
           pc = execute_insn(this, pc, fetch);
           bool serialize_before = (pc == PC_SERIALIZE_BEFORE);
 
@@ -240,7 +242,6 @@ miss:
         insn_fetch_t fetch = mmu->load_insn(pc);
         pc = execute_insn(this, pc, fetch);
         advance_pc();
-
         delete mmu->matched_trigger;
         mmu->matched_trigger = NULL;
       }

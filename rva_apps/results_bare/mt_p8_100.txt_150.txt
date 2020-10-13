@@ -1,0 +1,194 @@
+
+matmul(cid, nc, 150, input1_data, input2_data, results_data); barrier(nc): 2264464 cycles, 0.6 cycles/iter, 1.0 CPI
+	#  Processor 0  #
+Instruction count: 2385000
+User Instruction count: 0
+Hypervisor Instruction count: 0
+Supervisor Instruction count: 0
+Machine Instruction count: 2385000
+Slowpath Load count: 68
+Slowpath Store count: 7
+MMIO Load count: 1
+MMIO Store count: 0
+Load count: 854613
+Store count: 3137
+FromHost Load count: 1
+FromHost Store count: 0
+ToHost Load count: 1
+ToHost Store count: 0
+User Load count: 0
+User Store count: 0
+User MA count: 0
+Supervisor Load count: 0
+Supervisor Store count: 0
+Machine Load count: 854613
+Machine Store count: 3137
+Total memory access: 857750
+	#  Processor 1  #
+Instruction count: 2385000
+User Instruction count: 0
+Hypervisor Instruction count: 0
+Supervisor Instruction count: 0
+Machine Instruction count: 2385000
+Slowpath Load count: 73
+Slowpath Store count: 7
+MMIO Load count: 1
+MMIO Store count: 0
+Load count: 853442
+Store count: 2853
+FromHost Load count: 1
+FromHost Store count: 0
+ToHost Load count: 1
+ToHost Store count: 0
+User Load count: 0
+User Store count: 0
+User MA count: 0
+Supervisor Load count: 0
+Supervisor Store count: 0
+Machine Load count: 853442
+Machine Store count: 2853
+Total memory access: 856295
+	#  Processor 2  #
+Instruction count: 2380000
+User Instruction count: 0
+Hypervisor Instruction count: 0
+Supervisor Instruction count: 0
+Machine Instruction count: 2380000
+Slowpath Load count: 72
+Slowpath Store count: 7
+MMIO Load count: 1
+MMIO Store count: 0
+Load count: 852053
+Store count: 2851
+FromHost Load count: 1
+FromHost Store count: 0
+ToHost Load count: 1
+ToHost Store count: 0
+User Load count: 0
+User Store count: 0
+User MA count: 0
+Supervisor Load count: 0
+Supervisor Store count: 0
+Machine Load count: 852053
+Machine Store count: 2851
+Total memory access: 854904
+	#  Processor 3  #
+Instruction count: 2380000
+User Instruction count: 0
+Hypervisor Instruction count: 0
+Supervisor Instruction count: 0
+Machine Instruction count: 2380000
+Slowpath Load count: 73
+Slowpath Store count: 7
+MMIO Load count: 1
+MMIO Store count: 0
+Load count: 852053
+Store count: 2851
+FromHost Load count: 1
+FromHost Store count: 0
+ToHost Load count: 1
+ToHost Store count: 0
+User Load count: 0
+User Store count: 0
+User MA count: 0
+Supervisor Load count: 0
+Supervisor Store count: 0
+Machine Load count: 852053
+Machine Store count: 2851
+Total memory access: 854904
+	#  Processor 4  #
+Instruction count: 2380000
+User Instruction count: 0
+Hypervisor Instruction count: 0
+Supervisor Instruction count: 0
+Machine Instruction count: 2380000
+Slowpath Load count: 72
+Slowpath Store count: 6
+MMIO Load count: 1
+MMIO Store count: 0
+Load count: 852053
+Store count: 2851
+FromHost Load count: 1
+FromHost Store count: 0
+ToHost Load count: 1
+ToHost Store count: 0
+User Load count: 0
+User Store count: 0
+User MA count: 0
+Supervisor Load count: 0
+Supervisor Store count: 0
+Machine Load count: 852053
+Machine Store count: 2851
+Total memory access: 854904
+	#  Processor 5  #
+Instruction count: 2380000
+User Instruction count: 0
+Hypervisor Instruction count: 0
+Supervisor Instruction count: 0
+Machine Instruction count: 2380000
+Slowpath Load count: 73
+Slowpath Store count: 7
+MMIO Load count: 1
+MMIO Store count: 0
+Load count: 852053
+Store count: 2851
+FromHost Load count: 1
+FromHost Store count: 0
+ToHost Load count: 1
+ToHost Store count: 0
+User Load count: 0
+User Store count: 0
+User MA count: 0
+Supervisor Load count: 0
+Supervisor Store count: 0
+Machine Load count: 852053
+Machine Store count: 2851
+Total memory access: 854904
+	#  Processor 6  #
+Instruction count: 2380000
+User Instruction count: 0
+Hypervisor Instruction count: 0
+Supervisor Instruction count: 0
+Machine Instruction count: 2380000
+Slowpath Load count: 73
+Slowpath Store count: 9
+MMIO Load count: 1
+MMIO Store count: 0
+Load count: 852053
+Store count: 2851
+FromHost Load count: 1
+FromHost Store count: 0
+ToHost Load count: 1
+ToHost Store count: 0
+User Load count: 0
+User Store count: 0
+User MA count: 0
+Supervisor Load count: 0
+Supervisor Store count: 0
+Machine Load count: 852053
+Machine Store count: 2851
+Total memory access: 854904
+	#  Processor 7  #
+Instruction count: 2380000
+User Instruction count: 0
+Hypervisor Instruction count: 0
+Supervisor Instruction count: 0
+Machine Instruction count: 2380000
+Slowpath Load count: 72
+Slowpath Store count: 6
+MMIO Load count: 1
+MMIO Store count: 0
+Load count: 851988
+Store count: 2853
+FromHost Load count: 1
+FromHost Store count: 0
+ToHost Load count: 1
+ToHost Store count: 0
+User Load count: 0
+User Store count: 0
+User MA count: 0
+Supervisor Load count: 0
+Supervisor Store count: 0
+Machine Load count: 851988
+Machine Store count: 2853
+Total memory access: 854841

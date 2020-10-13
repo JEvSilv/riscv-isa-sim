@@ -1,0 +1,16 @@
+rva_subproject_deps = \
+	riscv \
+
+rva_install_prog_srcs = \
+
+rva_hdrs = \
+	aptemplate.h  \
+	ap_rv.h \
+	rva.h \
+
+rva_srcs = \
+	aptemplate.cc  \
+	ap_rv.cc \
+	rva.cc \
+
+rva_test_srcs = \

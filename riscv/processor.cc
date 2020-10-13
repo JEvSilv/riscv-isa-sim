@@ -24,12 +24,17 @@ processor_t::processor_t(const char* isa, sim_t* sim, uint32_t id,
   : debug(false), halt_request(false), sim(sim), ext(NULL), id(id),
   halt_on_reset(halt_on_reset), last_pc(1), executions(1)
 {
+  this->insn_count = 0;
+  this->insn_prv_m_count = 0;
+  this->insn_prv_s_count = 0;
+  this->insn_prv_u_count = 0;
+  this->insn_prv_h_count = 0;
+  this->stats = false;
   parse_isa_string(isa);
   register_base_instructions();
 
   mmu = new mmu_t(sim, this);
   disassembler = new disassembler_t(max_xlen);
-
   reset();
 }
 
@@ -43,6 +48,39 @@ processor_t::~processor_t()
       fprintf(stderr, "%0" PRIx64 " %" PRIu64 "\n", it.first, it.second);
   }
 #endif
+  if(stats)
+  {
+    printf("\t#  Processor %d  #\n", id);
+    printf("Instruction count: %u\n", this->insn_count);
+    printf("User Instruction count: %u\n", this->insn_prv_u_count);
+    printf("Hypervisor Instruction count: %u\n", this->insn_prv_h_count); 
+    printf("Supervisor Instruction count: %u\n", this->insn_prv_s_count);
+    printf("Machine Instruction count: %u\n", this->insn_prv_m_count);
+    printf("Slowpath Load count: %u\n", this->mmu->load_slow_path_count);
+    printf("Slowpath Store count: %u\n", this->mmu->store_slow_path_count);
+    printf("MMIO Load count: %u\n", this->mmu->mmio_load_count);
+    printf("MMIO Store count: %u\n", this->mmu->mmio_store_count);
+    printf("Load count: %u\n", this->mmu->load_count);
+    printf("Store count: %u\n", this->mmu->store_count);
+  
+    printf("FromHost Load count: %u\n", this->mmu->fromhost_load_count);
+    printf("FromHost Store count: %u\n", this->mmu->fromhost_store_count);
+    printf("ToHost Load count: %u\n", this->mmu->tohost_load_count);
+    printf("ToHost Store count: %u\n", this->mmu->tohost_store_count);
+
+    printf("User Load count: %u\n", this->mmu->prv_load_u);
+    printf("User Store count: %u\n", this->mmu->prv_store_u);
+    printf("User MA count: %u\n", this->mmu->total_u_ma());
+    printf("Supervisor Load count: %u\n", this->mmu->prv_load_s);
+    printf("Supervisor Store count: %u\n", this->mmu->prv_store_s);
+    printf("Machine Load count: %u\n", this->mmu->prv_load_m);
+    printf("Machine Store count: %u\n", this->mmu->prv_store_m);
+    printf("Total memory access: %u\n", this->mmu->total_memory_access());
+  }
+
+  if(this->get_extension() != NULL) {
+    this->get_extension()->count_info();  
+  }
 
   delete mmu;
   delete disassembler;
@@ -725,7 +763,7 @@ void processor_t::build_opcode_map()
     opcode_cache[i] = {0, 0, &illegal_instruction, &illegal_instruction};
 }
 
-void processor_t::register_extension(extension_t* x)
+void processor_t::register_extension(extension_t* x, bool log_mode)
 {
   for (auto insn : x->get_instructions())
     register_insn(insn);
@@ -736,6 +774,8 @@ void processor_t::register_extension(extension_t* x)
     throw std::logic_error("only one extension may be registered");
   ext = x;
   x->set_processor(this);
+  x->set_log(log_mode);
+  x->log_mode_ext = log_mode;
 }
 
 void processor_t::register_base_instructions()

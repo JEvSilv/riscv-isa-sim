@@ -14,11 +14,18 @@ class extension_t
   virtual std::vector<insn_desc_t> get_instructions() = 0;
   virtual std::vector<disasm_insn_t*> get_disasms() = 0;
   virtual const char* name() = 0;
+
+  //RV-Across:
+  virtual void count_info() {}; 
+  //void log_mode_ext(bool log_mode_ext){this->log_mode_ext = log_mode_ext;};
+  virtual void set_log(bool log_mode) {};
   virtual void reset() {};
   virtual void set_debug(bool value) {};
   virtual ~extension_t();
-
+  
   void set_processor(processor_t* _p) { p = _p; }
+
+  bool log_mode_ext;
  protected:
   processor_t* p;
 

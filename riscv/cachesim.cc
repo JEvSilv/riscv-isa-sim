@@ -80,8 +80,18 @@ void cache_sim_t::print_stats()
     return;
 
   float mr = 100.0f*(read_misses+write_misses)/(read_accesses+write_accesses);
-
   std::cout << std::setprecision(3) << std::fixed;
+
+  if(name == "L2$") {
+    uint64_t main_memory_cycles = (write_misses*100) + (read_misses*100) + (writebacks*100);
+    uint64_t l2_cycles = (read_accesses * 10) + (write_accesses * 10);
+    uint64_t total_hierarchy_cycles = main_memory_cycles + l2_cycles;
+    std::cout << "L2$ Main Memory: " << main_memory_cycles << std::endl;
+    std::cout << "L2$ Cache: " << l2_cycles << std::endl;
+    std::cout << "Total Hierarchy Cycles: " << total_hierarchy_cycles << std::endl;
+  }
+
+
   std::cout << name << " ";
   std::cout << "Bytes Read:            " << bytes_read << std::endl;
   std::cout << name << " ";
