@@ -1,5 +1,5 @@
-RISC-V ISA Simulator
-======================
+RISC-V ISA Simulator | RV-Across: An Associative Processing Simulator
+=====================================================================
 About
 -------------
 
