@@ -39,7 +39,7 @@ We assume that the custom instructions (rva-fwk.h) are utilized to call Associat
     
     $ riscv64-unknown-elf-gcc -o hello hello.c
     
-    $ spike pk --extension=rva hello
+    $ spike --extension=rva pk hello
         
 Simulating a New Instruction
 ------------------------------------
