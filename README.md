@@ -15,7 +15,7 @@ RISC-V processors.
 Build Steps
 ---------------
 
-We assume that the RISCV environment variable is set to the RISC-V tools
+We assume that the RISCV environment variable is set to the **RISC-V tools**
 install path, and that the riscv-fesvr package is installed there.
 
     $ apt-get install device-tree-compiler
@@ -46,7 +46,11 @@ We assume that the custom instructions (rva-fwk.h) are utilized to call Associat
     $ riscv64-unknown-elf-gcc -o hello hello.c
     
     $ spike --extension=rva pk hello
-        
+    
+or with stats:
+
+    $ spike --extension=rva --stats pk hello
+    
 Simulating a New Instruction
 ------------------------------------
 
