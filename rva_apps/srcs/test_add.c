@@ -17,7 +17,7 @@ int main()
                 printf("%u+%u -> ", i, j);
                 A[0] = i;
                 B[0] = j;
-                ADD_RVA(&A, &B, &result, 1, 8);
+                ADD_RVA(&A, &B, &result, 1, 1);
                 if(i+j == result[0]) {
                     printf("Ok!\n");
                 }else {
