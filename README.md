@@ -41,7 +41,7 @@ Now you can simulate the program atop the proxy kernel:
 
 Simulating with RV-Across
 -------------------------
-We assume that the custom instructions (rva-fwk.h) are utilized to call Associative operations. You can compile your program in the same way as hello world case and to simulate, you need to adding the RV-Across extension:
+We assume that the custom instructions (rva-fwk.h) are utilized to call Associative operations. You can compile your program in the same way as hello world case and for simulation, you need to add the RV-Across extension:
     
     $ riscv64-unknown-elf-gcc -o hello hello.c
     
