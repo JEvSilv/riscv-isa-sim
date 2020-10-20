@@ -51,6 +51,11 @@ or with stats:
 
     $ spike --extension=rva --stats pk hello
     
+or with execution log:
+
+    $ spike --extension=rva --log-mode pk hello
+  
+    
 Simulating a New Instruction
 ------------------------------------
 
